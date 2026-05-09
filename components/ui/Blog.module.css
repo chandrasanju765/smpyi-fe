@@ -1,0 +1,173 @@
+/* ROOT */
+.page {
+  background: #f7f8fc;
+}
+
+/* HERO */
+.hero {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f5f7ff, #eef2ff);
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.heroLeft {
+  flex: 1;
+}
+
+.badge {
+  background: #ffe7d6;
+  color: #f97316;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.heroTitle {
+  font-size: 42px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.heroTitle span {
+  color: #f97316;
+}
+
+.heroDesc {
+  margin-top: 10px;
+  color: #666;
+}
+
+.heroBtn {
+  margin-top: 20px;
+  background: #f97316;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+
+.heroRight img {
+  width: 500px;
+  border-radius: 16px;
+}
+
+/* FILTER */
+.filter {
+  text-align: center;
+  padding: 20px;
+}
+
+.search {
+  padding: 10px;
+  width: 300px;
+}
+
+.categories {
+  margin-top: 10px;
+}
+
+.categoryBtn {
+  margin: 5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #eee;
+}
+
+/* LAYOUT */
+.layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* FEATURED */
+.featured {
+  display: flex;
+  gap: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.featured img {
+  width: 300px;
+  border-radius: 12px;
+}
+
+.featuredTag {
+  background: orange;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.cardImg {
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.cardBody {
+  padding: 15px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.popular {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.popular img {
+  width: 60px;
+  height: 60px;
+}
+
+/* SUBSCRIBE */
+.subscribe {
+  display: flex;
+  justify-content: space-between;
+  background: #fde8d7;
+  padding: 40px;
+  margin-top: 40px;
+}
+
+.subscribe img {
+  width: 300px;
+}

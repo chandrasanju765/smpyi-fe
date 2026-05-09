@@ -1,0 +1,59 @@
+/* Outer blob wrapper */
+.ccBlobWrap {
+  width: 82px;   /* 🔥 as per your layout */
+  height: 90px;  /* 🔥 as per your layout */
+  flex-shrink: 0;
+
+  background-color: rgba(228, 182, 104, 0.17);
+
+  /* improved D shape (no sharp edge) */
+  border-radius: 18px 50% 50% 18px;
+
+  overflow: hidden;
+  position: relative;
+
+  transition:
+    border-radius 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ccRoot:hover .ccBlobWrap {
+  border-radius: 60% 40% 65% 35% / 55% 62% 38% 45%;
+  background-color: #e5f0ff;
+}
+
+/* Reel track */
+.ccReelTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 180px; /* 🔥 2 × 90 */
+
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ccRoot:hover .ccReelTrack {
+  transform: translateY(-90px); /* 🔥 EXACT blob height */
+}
+
+/* Each icon slot */
+.ccReelSlot {
+  width: 82px;
+  height: 90px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon size */
+.ccReelSlot > span {
+  display: block;
+  width: 60px;   /* 🔥 as per your layout */
+  height: 60px;
+}

@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme */
+    --bg: #FFFFFF;
+    --bg-surface: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --bg-nav: #FFFFFF;
+    --border: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --hero-bg: linear-gradient(135deg, #0A1628 0%, #1a3a5c 50%, #0d3260 100%);
+    --category-accent: #1E40AF;
+    --category-heading: #1E222F;
+    --category-desc: #00000475;
+    --deals-heading: #1E222F;
+  }
+
+  .dark {
+    --bg: #0F172A;
+    --bg-surface: #111827;
+    --bg-card: #1A2744;
+    --bg-nav: #0A1628;
+    --border: #2E3D5F;
+    --text-primary: #F1F5F9;
+    --text-secondary: #CBD5E1;
+    --text-muted: #64748B;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    --hero-bg: linear-gradient(135deg, #0A1628 0%, #1a3a5c 50%, #0d3260 100%);
+    --category-accent: #426EFF;
+    --category-heading: #91A9CC;
+    --category-desc: #B6B6C7;
+     --deals-heading: #B6B6C7;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer utilities {
+  .font-great-vibes {
+    font-family: 'Great Vibes', cursive;
+  }
+}
+
+@layer components {
+
+  /* Typography Scale from Design */
+  .text-display {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  .text-body-lg {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  /* Card Styles */
+  .card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .dark .card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    background-color: #F97316;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #EA6B0A;
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  /* Carousel Dots */
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .carousel-dot.active {
+    width: 32px;
+    border-radius: 4px;
+    background-color: #F97316;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-surface);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .text-gradient-blue {
+    background: linear-gradient(90deg, #3B82F6, #60A5FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-bg {
+    background: var(--hero-bg);
+  }
+}
+
+/* 🔥 BOUNCE ANIMATION */
+@keyframes dropBounce {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-18px); }
+  50% { transform: translateY(0); }
+  65% { transform: translateY(-10px); }
+  80% { transform: translateY(0); }
+  90% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.bounce-card:hover {
+  animation: dropBounce 0.8s ease;
+}
+
+/* 🔥 CAROUSEL SCROLL */
+@keyframes scrollX {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.carousel-track {
+  animation: scrollX 10s linear infinite;
+}
