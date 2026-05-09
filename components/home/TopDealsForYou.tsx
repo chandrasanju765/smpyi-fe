@@ -82,6 +82,7 @@ export function TopDealsForYou() {
               <div
                 key={deal.id}
                 className="
+                  bounce-card
                   bg-white rounded-xl
                   border border-[#E5E7EB]
                   hover:bg-[#E5F0FF]
