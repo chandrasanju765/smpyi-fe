@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface DealItem {
   id: number;
@@ -90,11 +91,13 @@ export function TopDealsForYou() {
                   transition
                 "
               >
-                <div className="p-4 pb-2">
-                  <img
+                 <div className="relative m-4 mb-2 rounded-lg overflow-hidden" style={{ height: "160px" }}>
+                  <Image
                     src={deal.image}
                     alt={deal.title}
-                    className="w-full h-40 object-cover rounded-lg"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 20vw"
+                    className="object-cover"
                   />
                 </div>
                 <div className="px-4 pb-2">

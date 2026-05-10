@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface ProductCard {
   id: number;
@@ -165,41 +166,18 @@ export function MostSellingProducts() {
                 <div className="relative px-3 pt-8 pb-2">
                  <div className="flex gap-1.5">
   {product.images.map((src, i) => (
-    <div
-      key={i}
-      className="relative overflow-hidden rounded-[10px]"
-      style={{
-        width: "123px",
-        height: "123px",
-      }}
-    >
-      {/* IMAGE */}
-      <img
-        src={src}
-        alt={product.category}
-        className="
-          w-full h-full object-cover
-          transition-all duration-400 ease-out
-
-          /* subtle lift */
-          group-hover:-translate-y-2
-
-          /* very soft zoom */
-          group-hover:scale-[1.03]
-        "
-      />
-
-      {/* SOFT OVERLAY (premium feel) */}
-      <div
-        className="
-          absolute inset-0 rounded-[10px]
-          bg-black/0
-          transition-all duration-400
-          group-hover:bg-black/5
-        "
-      />
-    </div>
-  ))}
+                      // Fixed 123×123 — use width + height props
+                      <div key={i} className="relative rounded-[10px] overflow-hidden" style={{ width: "123px", height: "123px" }}>
+                        <Image
+                          src={src}
+                          alt={product.category}
+                          fill
+                          sizes="123px"
+                          className="object-cover transition-all duration-400 ease-out group-hover:-translate-y-2 group-hover:scale-[1.03]"
+                        />
+                        <div className="absolute inset-0 rounded-[10px] bg-black/0 transition-all duration-400 group-hover:bg-black/5" />
+                      </div>
+                    ))}
 </div>
                 </div>
 

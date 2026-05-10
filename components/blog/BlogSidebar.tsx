@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Blog } from "../../components/blog/type";
 
 interface Props {
@@ -41,17 +42,16 @@ export default function BlogSidebar({ blogs }: Props) {
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           {blogs.slice(0, 5).map((b) => (
             <div key={b.id} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-              <img
-                src={b.image}
-                alt={b.title}
-                style={{
-                  width: "64px",
-                  height: "64px",
-                  borderRadius: "10px",
-                  objectFit: "cover",
-                  flexShrink: 0,
-                }}
-              />
+              {/* Fixed-size thumbnail — use width + height */}
+              <div style={{ position: "relative", width: "64px", height: "64px", flexShrink: 0, borderRadius: "10px", overflow: "hidden" }}>
+                <Image
+                  src={b.image}
+                  alt={b.title}
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                />
+              </div>
               <div>
                 <p style={{
                   fontFamily: "Poppins, sans-serif",
@@ -81,12 +81,7 @@ export default function BlogSidebar({ blogs }: Props) {
         padding: "24px",
         border: "1px solid #FED7AA",
       }}>
-        {/* Top: phone icon area */}
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "16px",
-        }}>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "16px" }}>
           <div style={{
             width: "80px",
             height: "80px",

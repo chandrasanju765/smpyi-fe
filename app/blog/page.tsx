@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import BlogCard from "../../components/blog/BlogCard";
 import BlogFilter from "../../components/blog/BlogFilter";
 import BlogSubscribe from "../../components/blog/BlogSubscribe";
@@ -160,26 +161,43 @@ export default function BlogPage() {
             background: "linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 50%, #FFF7ED 100%)",
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=900&q=80"
-            alt="Blog workspace"
-            className="absolute top-0 right-0 h-full object-cover object-center"
-            style={{ width: "52%" }}
-          />
+          {/* Right-side image wrapper — needed for fill to work */}
           <div
-            className="absolute top-0 right-0 h-full pointer-events-none"
+            className="absolute top-0 right-0 h-full"
+            style={{ width: "52%" }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=900&q=80"
+              alt="Blog workspace"
+              fill
+              className="object-cover object-center"
+              sizes="52vw"
+              priority
+            />
+          </div>
+
+          {/* Gradient fade over image left edge */}
+          <div
+            className="absolute top-0 right-0 h-full pointer-events-none z-[1]"
             style={{ width: "52%", background: "linear-gradient(to right, #EFF6FF 0%, transparent 28%)" }}
           />
+
+          {/* Text content */}
           <div className="relative z-[2] h-full flex items-center px-6 sm:px-10 lg:px-16">
             <div className="flex flex-col justify-center w-full sm:w-[55%] lg:w-[42%]">
               <span className="inline-block border-[1.5px] border-[#F97316] text-[#F97316] rounded-full px-4 py-1 text-xs font-semibold mb-4 w-fit tracking-wide">
                 OUR BLOG
               </span>
-              <h1 className="font-poppins font-bold text-[#0F172A] leading-snug mb-3" style={{ fontSize: "clamp(18px, 2.4vw, 42px)" }}>
+              <h1
+                className="font-poppins font-bold text-[#0F172A] leading-snug mb-3"
+                style={{ fontSize: "clamp(18px, 2.4vw, 42px)" }}
+              >
                 Business Insights &amp; <span className="text-[#F97316]">Resources</span>
               </h1>
-              <p className="text-[#64748B] leading-relaxed mb-5" style={{ fontSize: "clamp(11px, 0.95vw, 15px)" }}>
+              <p
+                className="text-[#64748B] leading-relaxed mb-5"
+                style={{ fontSize: "clamp(11px, 0.95vw, 15px)" }}
+              >
                 Stay informed with expert insights, industry trends, and practical tips to grow smarter every day.
               </p>
               <div className="flex flex-wrap gap-4 mb-6">
@@ -189,7 +207,9 @@ export default function BlogPage() {
                   { icon: "🔄", value: "Weekly", label: "New Updates" },
                 ].map((s) => (
                   <div key={s.label} className="flex items-center gap-2">
-                    <span className="w-9 h-9 rounded-[10px] bg-white flex items-center justify-center text-base shadow-sm">{s.icon}</span>
+                    <span className="w-9 h-9 rounded-[10px] bg-white flex items-center justify-center text-base shadow-sm">
+                      {s.icon}
+                    </span>
                     <div>
                       <div className="font-bold text-sm text-[#0F172A]">{s.value}</div>
                       <div className="text-[11px] text-[#94A3B8]">{s.label}</div>
@@ -228,7 +248,6 @@ export default function BlogPage() {
       {/* MAIN CONTENT */}
       <section className="px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-[1300px] mx-auto">
-          {/* items-start prevents sidebar from stretching to match left column height */}
           <div
             className="grid gap-8 items-start"
             style={{ gridTemplateColumns: "1fr clamp(280px, 26%, 360px)" }}
@@ -236,7 +255,6 @@ export default function BlogPage() {
             {/* LEFT */}
             <div className="min-w-0 flex flex-col gap-6">
               {featured && <FeaturedBlog blog={featured} />}
-
               <div
                 className="grid gap-6"
                 style={{
@@ -268,7 +286,7 @@ export default function BlogPage() {
               </div>
             </div>
 
-            {/* SIDEBAR — sticky so it stays in view while scrolling */}
+            {/* SIDEBAR */}
             <div className="sticky top-[60px]">
               <BlogSidebar blogs={blogs} />
             </div>

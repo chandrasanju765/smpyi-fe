@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface ImageCarouselProps {
@@ -7,10 +8,7 @@ interface ImageCarouselProps {
   height?: string;
 }
 
-export default function ImageCarousel({
-  images,
-  height = "420px",
-}: ImageCarouselProps) {
+export default function ImageCarousel({ images, height = "420px" }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const [animating, setAnimating] = useState(false);
@@ -27,18 +25,11 @@ export default function ImageCarousel({
     setAnimating(true);
     setPrevIndex(currentIndex);
     setCurrentIndex(index);
-    setTimeout(() => {
-      setPrevIndex(null);
-      setAnimating(false);
-    }, 800);
+    setTimeout(() => { setPrevIndex(null); setAnimating(false); }, 800);
   }
 
   return (
-    <div
-      className="relative w-full overflow-hidden rounded-2xl shadow-xl"
-      style={{ height }}
-    >
-      {/* Keyframe styles injected once */}
+    <div className="relative w-full overflow-hidden rounded-2xl shadow-xl" style={{ height }}>
       <style>{`
         @keyframes kenBurns {
           0%   { transform: scale(1)    translateX(0)   translateY(0); }
@@ -61,36 +52,30 @@ export default function ImageCarousel({
       {/* Exiting slide */}
       {prevIndex !== null && (
         <div className="absolute inset-0 img-exit z-10">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={images[prevIndex]}
-            alt=""
-            className="w-full h-full object-cover"
-          />
+          <Image src={images[prevIndex]} alt="" fill sizes="60vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/40 to-transparent" />
         </div>
       )}
 
-      {/* Entering / active slide */}
+      {/* All slides */}
       {images.map((src, i) => (
         <div
           key={i}
           className={`absolute inset-0 ${
             i === currentIndex
-              ? prevIndex !== null
-                ? "img-enter z-20"
-                : "z-20"
+              ? prevIndex !== null ? "img-enter z-20" : "z-20"
               : "opacity-0 z-0"
           }`}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={src}
-            alt={`Slide ${i + 1}`}
-            className={`w-full h-full object-cover ${
-              i === currentIndex ? "kb-active" : ""
-            }`}
-          />
+          <div className={`absolute inset-0 ${i === currentIndex ? "kb-active" : ""}`}>
+            <Image
+              src={src}
+              alt={`Slide ${i + 1}`}
+              fill
+              sizes="60vw"
+              className="object-cover"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/40 to-transparent" />
         </div>
       ))}
@@ -102,9 +87,7 @@ export default function ImageCarousel({
             key={i}
             onClick={() => goTo(i)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === currentIndex
-                ? "w-8 bg-[#F97316]"
-                : "w-2 bg-white/50 hover:bg-white/80"
+              i === currentIndex ? "w-8 bg-[#F97316]" : "w-2 bg-white/50 hover:bg-white/80"
             }`}
           />
         ))}

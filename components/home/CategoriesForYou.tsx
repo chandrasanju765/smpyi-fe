@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import Image from "next/image";
 
 interface CategoryCard {
   id: number;
@@ -98,8 +99,8 @@ const CATEGORY_ITEMS: CategoryItem[] = [
 // Base 3 products — repeated for infinite looping
 const BASE_PRODUCTS: CategoryCard[] = [
   { id: 1, title: "Bathroom mirror", price: "Rs1,476.51", image: "/images/bathroomMirror.png" },
-  { id: 2, title: "Show Piece",      price: "Rs1,476.51", image: "/images/show-piece.png" },
-  { id: 3, title: "Wall Decor",      price: "Rs1,476.51", image: "/images/wall-decor.png" },
+  { id: 2, title: "Show Piece", price: "Rs1,476.51", image: "/images/show-piece.png" },
+  { id: 3, title: "Wall Decor", price: "Rs1,476.51", image: "/images/wall-decor.png" },
 ];
 
 // Repeat 4× so arrows never run out of cards to scroll to
@@ -110,8 +111,8 @@ const PRODUCTS: CategoryCard[] = [
   ...BASE_PRODUCTS.map((p) => ({ ...p, id: p.id + 30 })),
 ];
 
-const VISIBLE     = 3;   // cards shown at once
-const GAP         = 16;  // px gap between cards
+const VISIBLE = 3;   // cards shown at once
+const GAP = 16;  // px gap between cards
 
 
 // ── Component ──────────────────────────────────────────
@@ -163,13 +164,13 @@ export function CategoriesForYou() {
     <section className="px-4 sm:px-6 lg:px-8 py-10">
       <div className="max-w-7xl mx-auto">
 
-        {/* ✅ CHANGED: full section white */}
+        {/* full section white */}
         <div className="flex gap-4 items-stretch rounded-2xl p-4 bg-white">
 
           {/* ══ LEFT SIDEBAR ══════════════════════════════════ */}
           <div
             className="rounded-2xl shadow-sm flex-shrink-0 flex flex-col"
-style={{ width: "325px", background: "#F1F1F1" }}
+            style={{ width: "325px", background: "#F1F1F1" }}
           >
             {/* Header */}
             <div className="flex items-center gap-2 px-4 pt-4 pb-3 border-b border-gray-100">
@@ -178,16 +179,16 @@ style={{ width: "325px", background: "#F1F1F1" }}
               </h2>
             </div>
 
-            {/* ✅ Scrollable list with visible scrollbar */}
+            {/* Scrollable list with visible scrollbar */}
             <div
               ref={sidebarRef}
               className="overflow-y-auto"
-            style={{
-  height: "230px", // 👈 exactly 5 rows (each row ~52px)
-  overflowY: "auto",
-  scrollbarWidth: "thin",
-  scrollbarColor: "#9CA3AF transparent",
-}}
+              style={{
+                height: "230px",
+                overflowY: "auto",
+                scrollbarWidth: "thin",
+                scrollbarColor: "#9CA3AF transparent",
+              }}
             >
               {CATEGORY_ITEMS.map((cat, i) => {
                 const isActive = activeCategory === cat.name;
@@ -195,43 +196,42 @@ style={{ width: "325px", background: "#F1F1F1" }}
                   <button
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.name)}
-                    className={`w-full flex items-center justify-between px-4 py-3 text-left transition-colors duration-150 ${
-                      i !== CATEGORY_ITEMS.length - 1
+                    className={`w-full flex items-center justify-between px-4 py-3 text-left transition-colors duration-150 ${i !== CATEGORY_ITEMS.length - 1
                         ? "border-b border-gray-50"
                         : ""
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-3">
-{getCategoryIcon(i, isActive)}
-  <span
-    className="font-poppins text-sm font-medium"
-    style={{
-      color: isActive ? "#3B82F6" : "#1E222F",
-    }}
-  >
-    {cat.name}
-  </span>
-</div>
+                      {getCategoryIcon(i, isActive)}
+                      <span
+                        className="font-poppins text-sm font-medium"
+                        style={{
+                          color: isActive ? "#3B82F6" : "#1E222F",
+                        }}
+                      >
+                        {cat.name}
+                      </span>
+                    </div>
 
-{/* RIGHT ARROW (restore this) */}
-<svg
-  width="15"
-  height="15"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke={isActive ? "#3B82F6" : "#9CA3AF"}
-  strokeWidth="2.2"
-  strokeLinecap="round"
-  strokeLinejoin="round"
->
-  <polyline points="9 18 15 12 9 6" />
-</svg>
+                    {/* RIGHT ARROW */}
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke={isActive ? "#3B82F6" : "#9CA3AF"}
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
                   </button>
                 );
               })}
             </div>
 
-            {/* Down chevron (unchanged) */}
+            {/* Down chevron */}
             <button
               onClick={() => scrollSidebar("down")}
               className="flex items-center justify-center py-1.5 hover:bg-gray-50 transition-colors rounded-b-2xl"
@@ -249,7 +249,7 @@ style={{ width: "325px", background: "#F1F1F1" }}
             className="flex-1 rounded-xl relative flex items-center overflow-hidden"
             style={{ background: "#F1F1F1", padding: "16px 55px" }}
           >
-            {/* ✅ LEFT ARROW OPACITY INCREASED */}
+            {/* LEFT ARROW */}
             <button
               onClick={() => goTo(currentIndex - 1)}
               disabled={currentIndex === 0}
@@ -258,7 +258,7 @@ style={{ width: "325px", background: "#F1F1F1" }}
                 w-8 h-8 rounded-full bg-white shadow
                 flex items-center justify-center
                 hover:shadow-md transition-all duration-200
-                disabled:opacity-60   /* 👈 increased from 30 */
+                disabled:opacity-60
                 disabled:cursor-not-allowed
               "
             >
@@ -290,11 +290,15 @@ style={{ width: "325px", background: "#F1F1F1" }}
                       width: `calc((100% - 32px) / 3)`,
                     }}
                   >
-                    <div className="w-full overflow-hidden" style={{ height: "170px" }}>
-                      <img
+                    {/* Fixed Image component with explicit width, height, and unoptimized for local PNGs */}
+                    <div className="relative w-full" style={{ height: "170px" }}>
+                      <Image
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 300px"
+                        className="object-cover group-hover:scale-105 transition duration-300"
+                        unoptimized
                       />
                     </div>
 
@@ -311,7 +315,7 @@ style={{ width: "325px", background: "#F1F1F1" }}
               </div>
             </div>
 
-            {/* Right arrow unchanged */}
+            {/* Right arrow */}
             <button
               onClick={() => goTo(currentIndex + 1)}
               disabled={currentIndex >= maxIndex}
