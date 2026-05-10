@@ -37,7 +37,9 @@ export default function VisionSection() {
 
           {/* Quote box */}
           <div className="relative bg-[#EEF3FA] dark:bg-white/10 border-l-4 border-[#F97316] rounded-r-xl px-6 py-5 mb-6">
-            <span className="text-[#F97316] text-4xl font-serif leading-none absolute -top-2 left-4">"</span>
+            <span className="text-[#F97316] text-4xl font-serif leading-none absolute -top-2 left-4">
+              &ldquo;
+            </span>
             <p className="text-[#1E222F] dark:text-white text-[14px] font-medium italic leading-relaxed pl-4">
               Our vision is to make marketing not just a necessity, but a journey
               of discovery and growth for every business.
